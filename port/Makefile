@@ -1,6 +1,6 @@
 PORTNAME= my_elixir_app
 CATEGORIES= devel
-DISTVERSION= 0.1.0
+DISTVERSION= 0.1.1
 DISTVERSIONPREFIX= v
 
 MAINTAINER= pat@patmaddox.com
