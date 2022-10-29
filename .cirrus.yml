@@ -3,6 +3,7 @@ freebsd_instance:
 
 env:
   PATH: /usr/local/lib/erlang25/bin:$PATH
+  ASSUME_ALWAYS_YES: yes
 
 pkg_task:
   pkg_script:
