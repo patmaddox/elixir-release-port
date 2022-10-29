@@ -12,7 +12,7 @@ WRKSRC_SUBDIR= my_elixir_app
 
 MIX= cd ${WRKSRC}/${WRKSRC_SUBDIR} && MIX_ENV=prod LC_ALL=C.UTF-8 mix
 
-BUILD_DEPENDS= elixir:lang/elixir-devel erl:lang/erlang-runtime25
+BUILD_DEPENDS= elixir:lang/elixir-devel
 
 do-build:
 	${MIX} local.hex --force --if-missing
