@@ -17,10 +17,13 @@ BUILD_DEPENDS= elixir:lang/elixir-devel
 do-build:
 	${MIX} local.hex --force --if-missing
 	${MIX} local.rebar --force --if-missing
+
 	${MIX} deps.get compile
+	${MIX} release --path ${WRKDIR}/release
+
+	find ${WRKDIR}/release -type f | sed -e 's:${WRKDIR}/release::' > pkg-plist
 
 do-install:
-	${MIX} release --path ${STAGEDIR}${PREFIX}/libexec/${PORTNAME}
-	find ${STAGEDIR}${PREFIX} -type f | sed -e 's:${STAGEDIR}${PREFIX}/::' > pkg-plist
+	${CP} -Rp ${WRKDIR}/release/ ${STAGEDIR}
 
 .include <bsd.port.mk>
