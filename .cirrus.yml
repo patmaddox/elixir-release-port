@@ -7,6 +7,8 @@ env:
 
 pkg_task:
   pkg_script:
+    - sed -i '' -e 's/quarterly/latest/' /etc/pkg/FreeBSD.conf
+    - pkg update
     - fetch https://download.freebsd.org/ports/ports/ports.tar.xz
     - tar -xf ports.tar.xz -C /usr
     - mkdir work
