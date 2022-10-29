@@ -1,0 +1,13 @@
+freebsd_instance:
+  image_family: freebsd-13-1
+
+env:
+  PATH: /usr/local/lib/erlang25/bin:$PATH
+
+pkg_task:
+  pkg_script:
+    - fetch https://download.freebsd.org/ports/ports/ports.tar.xz
+    - tar -xf ports.tar.xz -C /usr
+    - mkdir work
+    - env USE_PACKAGE_DEPENDS_ONLY=yes make WRKDIR=$(pwd)/work WRKSRC=$(pwd)/my_elixir_app USE_GITHUB=no DISTFILES="" -C port install-missing-packages install
+    - /usr/local/libexec/my_elixir_app/bin/my_elixir_app

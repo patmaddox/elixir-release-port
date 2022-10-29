@@ -11,6 +11,8 @@ GH_PROJECT= elixir-release-port
 
 MIX= MIX_ENV=prod LC_ALL=C.UTF-8 mix
 
+BUILD_DEPENDS= elixir:lang/elixir-devel erl:lang/erlang-runtime25
+
 do-build:
 	${MIX} local.hex --force --if-missing
 	${MIX} local.rebar --force --if-missing
