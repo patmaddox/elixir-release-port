@@ -10,9 +10,11 @@ GH_ACCOUNT= patmaddox
 GH_PROJECT= elixir-release-port
 WRKSRC_SUBDIR= my_elixir_app
 
-MIX= cd ${WRKSRC}/${WRKSRC_SUBDIR} && MIX_ENV=prod LC_ALL=C.UTF-8 mix
+MIX= cd ${WRKSRC} && ${MAKE_ENV} MIX_ENV=prod LC_ALL=C.UTF-8 mix
 
-BUILD_DEPENDS= elixir:lang/elixir-devel
+ERLANG_VER= 24
+BUILD_DEPENDS= elixir:lang/elixir-devel erlang-runtime${ERLANG_VER}>0:lang/erlang-runtime${ERLANG_VER}
+MAKE_ENV+= MAN_PREFIX=${PREFIX}/man PATH="${LOCALBASE}/lib/erlang${ERLANG_VER}/bin:${PATH}"
 
 do-build:
 	${MIX} local.hex --force --if-missing

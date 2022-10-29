@@ -1,0 +1,20 @@
+package: _workclean distinfo
+  make ERLANG_VER=25 DISTDIR=$(pwd)/_dist package
+
+distinfo: _dist
+  #!/bin/sh
+  if [ ! -f distinfo ]; then
+    make DISTDIR=$(pwd)/_dist makesum > distinfo
+    echo "Generated distinfo"
+  fi
+
+_dist:
+  @mkdir -p _dist
+
+clean: _workclean distclean
+
+_workclean:
+  @rm -rf work
+
+distclean:
+  @rm -rf _dist
