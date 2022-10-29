@@ -12,7 +12,9 @@ GH_PROJECT= elixir-release-port
 MIX= MIX_ENV=prod LC_ALL=C.UTF-8 mix
 
 do-build:
-	cd ${WRKSRC} && ${MIX} compile
+	${MIX} local.hex --force --if-missing
+	${MIX} local.rebar --force --if-missing
+	cd ${WRKSRC} && ${MIX} deps.get compile
 
 do-install:
 	cd ${WRKSRC} && ${MIX} release --path ${STAGEDIR}${PREFIX}/libexec/${PORTNAME}
