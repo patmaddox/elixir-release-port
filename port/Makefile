@@ -21,9 +21,9 @@ do-build:
 	${MIX} deps.get compile
 	${MIX} release --path ${WRKDIR}/release
 
-	find ${WRKDIR}/release -type f | sed -e 's:${WRKDIR}/release::' > pkg-plist
+	find ${WRKDIR}/release -type f | sed -e 's:${WRKDIR}/release/:libexec/${PORTNAME}/:' > pkg-plist
 
 do-install:
-	${CP} -Rp ${WRKDIR}/release/ ${STAGEDIR}
+	${CP} -Rp ${WRKDIR}/release/ ${STAGEDIR}${PREFIX}/libexec/${PORTNAME}
 
 .include <bsd.port.mk>
