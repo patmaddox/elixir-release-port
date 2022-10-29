@@ -11,5 +11,7 @@ pkg_task:
     - pkg update
     - fetch https://download.freebsd.org/ports/ports/ports.tar.xz
     - tar -xf ports.tar.xz -C /usr
+    - sed -i '' -e 's:${XARGS} -o:${XARGS}:' /usr/ports/Mk/bsd.port.mk
     - mkdir work
     - env USE_PACKAGE_DEPENDS_ONLY=yes make WRKDIR=$(pwd)/work WRKSRC=$(pwd)/my_elixir_app USE_GITHUB=no DISTFILES="" -C port install-missing-packages install
+    - /usr/local/libexec/my_elixir_app/bin/my_elixir_app eval "1+1"
